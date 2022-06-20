@@ -6,5 +6,11 @@ import {HttpClient} from "@angular/common/http";
 })
 export class CatalogueService {
 
+  public host:string="http://localhost:8080"
+
   constructor(private http:HttpClient) { }
+
+  public getRessources(url:string){
+    return this.http.get(this.host+url)
+  };
 }

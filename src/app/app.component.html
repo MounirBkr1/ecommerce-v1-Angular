@@ -34,3 +34,25 @@
     </div>
   </div>
 </nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="list-groupe"  *ngIf="categories">
+        <!--  {
+        "_embedded" : {
+            "categories" : [ {
+              "name" : "computers",
+              "description" : null,
+              "photo" : null, .... ; ce qui retourne back end _embedded.categories  -->
+        <li *ngFor="let c of categories._embedded.categories">
+          {{c.name}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>
