@@ -1,0 +1,16 @@
+<div *ngIf="products">
+        <div class="row" *ngFor="let p of products._embedded.products" >
+          <div class="col-lg-6 m-2 ">
+            <div class="card" style="width: 18rem;">
+              <div class="card-header"><h5 class="card-title">{{p.name}}</h5></div>
+              <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur
+                  adipisicing elit. Aliquid aspernatur et iure quasi sit, vitae!</p>
+                <img src="{{this.catalogueService.host +'/photoProduct/'+p.id}}" class="card-img-top" alt="..."><br>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+</div>
