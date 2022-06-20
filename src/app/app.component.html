@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active my-clickable" aria-current="page"  (click)="onSelectedProducts()">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -45,7 +45,9 @@
               "name" : "computers",
               "description" : null,
               "photo" : null, .... ; ce qui retourne back end _embedded.categories  -->
-        <li *ngFor="let c of categories._embedded.categories">
+        <li [ngClass]="currentCategorie==c?'active':''"  *ngFor="let c of categories._embedded.categories" (click)="getProductByCategorie(c)"
+             class="list-group-item my-clickable"
+        >
           {{c.name}}
         </li>
       </ul>

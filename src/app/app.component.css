@@ -1,0 +1,7 @@
+.my-clickable{
+  cursor: pointer;
+}
+
+.active{
+  background-color:lightslategray;
+}
