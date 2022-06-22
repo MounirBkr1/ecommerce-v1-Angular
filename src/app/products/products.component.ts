@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
 
     // @ts-ignore
-    alert("i m here"+ this.userAuthenticated.roles.idexOf('ADMIN'));
+    //alert("i m here"+ this.userAuthenticated.roles.idexOf('ADMIN'));
 
 //IMPORTANT:changement de route sur meme url(..//products/2/2 ,../products/2/3)
     this.router.events.subscribe((val)=> {
@@ -119,7 +119,15 @@ export class ProductsComponent implements OnInit {
     this.selectedFiles = undefined
   }
 
+  //get time pour actualiser automatiquement les photos
   getTS() {
     return this.currentTime;
   }
+
+  //afficher des icons slm pour admin
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
+
 }

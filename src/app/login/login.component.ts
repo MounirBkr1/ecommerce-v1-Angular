@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     console.log(dataForm);
     this.authService.login(dataForm.username,dataForm.password);
     if(this.authService.isAutheticated){
+      this.authService.saveAuthenticatedUser();
       this.router.navigateByUrl('');  //url home by default
 
     }

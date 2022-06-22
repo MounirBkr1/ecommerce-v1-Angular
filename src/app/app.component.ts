@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CatalogueService} from "./catalogue.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthenticationService} from "./services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,14 @@ export class AppComponent implements OnInit {
 
 
   constructor(private catalogueService:CatalogueService,
-              private router:Router){}
+              private router:Router,
+              private authService:AuthenticationService){}
 
   ngOnInit(): void {
+    //s'il trouve l'user il le charge et sait que vs etes authentifié et connait les roles
+    this.authService.loadAuthenticatedUserFromLocalStorage();
     this.getCategories();
+
   }
 
   private getCategories() {
@@ -34,23 +39,28 @@ export class AppComponent implements OnInit {
     this.router.navigateByUrl('/products/2/'+c.id)
   }
 
-
+//afficher les produits selectionnés
   onSelectedProducts() {
     this.currentCategorie=undefined;
     this.router.navigateByUrl("/products/1/0");
   }
 
+  //afficher les produits en promotion
   onProductPromo() {
     this.currentCategorie=undefined;
     this.router.navigateByUrl("/products/3/0");
   }
 
+  //afficher les produit disponibles
   onProductDispo() {
     this.currentCategorie=undefined;
     this.router.navigateByUrl("/products/4/0");
   }
 
+  //logOut
   onLogout() {
+    //supprimr user et initialiser local storage
+    this.authService.removeTokenFromLocalStorage();
     this.router.navigateByUrl("login");
   }
 }
