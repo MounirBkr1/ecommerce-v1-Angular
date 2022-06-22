@@ -39,4 +39,18 @@ export class AppComponent implements OnInit {
     this.currentCategorie=undefined;
     this.router.navigateByUrl("/products/1/0");
   }
+
+  onProductPromo() {
+    this.currentCategorie=undefined;
+    this.router.navigateByUrl("/products/3/0");
+  }
+
+  onProductDispo() {
+    this.currentCategorie=undefined;
+    this.router.navigateByUrl("/products/4/0");
+  }
+
+  onLogout() {
+    this.router.navigateByUrl("login");
+  }
 }

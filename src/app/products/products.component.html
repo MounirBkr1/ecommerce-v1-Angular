@@ -1,4 +1,7 @@
 <div *ngIf="products" class="row">
+  <div>
+    <h3>{{title}}</h3>
+  </div>
         <div  *ngFor="let p of products._embedded.products" class="col-md-6 my-2 " >
 
             <div class="card" >
@@ -9,7 +12,26 @@
                     <td>
                       <p class="card-text">Lorem ipsum dolor sit amet, consectetur
                         adipisicing elit. Aliquid aspernatur et iure quasi sit, vitae!</p>
-                      <img src="{{this.catalogueService.host +'/photoProduct/'+p.id}}" class="card-img-top" alt="..." width="50px" height="150px"><br>
+                          <!--'?ts='+getTS(): Actualiser l'image une fois modifiée = vider cache du navigateur-->
+                      <img src="{{this.catalogueService.host +'/photoProduct/'+p.id + '?ts='+getTS()}}" class="card-img-top" alt="..." width="50px" height="150px"><br>
+
+                      <!-- AFFICHE SLM POUR LES ADMINS-->
+                      <p> auth service: {{this.authService.isAdmin()}}  </p>
+
+                      <div *ngIf="this.authService.isAdmin()">
+                        <p>
+                          <button (click)="onEditPhoto(p)">
+                            <i class="fa-solid fa-pen-to-square">update</i>
+                          </button>
+                        </p>
+                        <!--currentProduct==p => pr qu'il s'affiche slm pr produit selectionné -->
+                        <p *ngIf="editPhoto==true && currentProduct==p">
+                          <input type="file" (change)="onSelectFile($event)">
+                          <button class="btn btn-success" (click)="uploadPhoto()">upload</button>
+                          {{progress}}
+                        </p>
+                      </div>
+
                     </td>
 
                   </tr>
@@ -17,7 +39,7 @@
                     <td>{{p.description}}</td>
                   </tr>
                   <tr>
-                    <td>{{p.price | number:'1.2-2' | currency}}</td>
+                    <td>{{p.price |  currency: "USD"}}</td>
                   </tr>
 
                 </table>
