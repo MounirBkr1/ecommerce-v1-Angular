@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CatalogueService} from "./catalogue.service";
+import {CatalogueService} from "./services/catalogue.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "./services/authentication.service";
 

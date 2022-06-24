@@ -4,47 +4,94 @@
   </div>
         <div  *ngFor="let p of products._embedded.products" class="col-md-6 my-2 " >
 
-            <div class="card" >
+            <div class="card my-hauteur" >
               <div class="card-header"><h5 class="card-title">{{p.name}}</h5></div>
+
               <div class="card-body">
-                <table>
-                  <tr>
-                    <td>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur
-                        adipisicing elit. Aliquid aspernatur et iure quasi sit, vitae!</p>
-                          <!--'?ts='+getTS(): Actualiser l'image une fois modifiée = vider cache du navigateur-->
-                      <img src="{{this.catalogueService.host +'/photoProduct/'+p.id + '?ts='+getTS()}}" class="card-img-top" alt="..." width="50px" height="150px"><br>
+<!--                <img src="{{this.catalogueService.host +'/photoProduct/'+p.id + '?ts='+getTS()}}" class="card-img-top" alt="..." width="50px" height="150px"><br>-->
 
-                      <!-- AFFICHE SLM POUR LES ADMINS-->
-                      <div *ngIf="isAdmin()">
-                        <p>
-                          <button (click)="onEditPhoto(p)">
-                            <i class="fa-solid fa-pen-to-square">update</i>
-                          </button>
-                        </p>
-                        <!--currentProduct==p => pr qu'il s'affiche slm pr produit selectionné -->
-                        <p *ngIf="editPhoto==true && currentProduct==p">
-                          <input type="file" (change)="onSelectFile($event)">
-                          <button class="btn btn-success" (click)="uploadPhoto()">upload</button>
-                          {{progress}}
-                        </p>
-                      </div>
+                <img class="img-thumbnail img-rounded btn" (click)="onProductDetails(p)" [src]="this.catalogueService.host+'/photoProduct/'+p.id+'?ts='+getTS()"/>
 
-                    </td>
 
-                  </tr>
-                  <tr>
-                    <td>{{p.description}}</td>
-                  </tr>
-                  <tr>
-                    <td>{{p.price |  currency: "USD"}}</td>
-                  </tr>
 
-                </table>
+                <div *ngIf="isAdmin()">
+                  <button (click)="onEditPhoto(p)">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <p *ngIf="editPhoto && currentProduct==p">
+                    <input type="file" (change)="onSelectedFile($event)">
+                    <button class="btn btn-success" (click)="uploadPhoto()">Upload</button>
+                    {{progress}}
+                  </p>
+                </div>
+                <div>
+                  {{p.description}}
+                </div>
+                <div>
+                  <label>Price : {{p.currentPrice|number:'0.00'}}</label>
+                </div>
+                <div>
+        <span *ngIf="p.promotion">
+                <img src="assets/images/promo.png" class="img-thumbnail img-circle" height="30">
+              </span>
+                  <span *ngIf="p.selected">
+                <img src="assets/images/favorite.png" class="img-thumbnail img-circle" height="30">
+              </span>
+                  <span *ngIf="p.available">
+                <img src="assets/images/available.png" class="img-thumbnail img-circle"  height="30">
+              </span>
+                </div>
+                <div>
+                  <form #f="ngForm" (ngSubmit)="onAddProductToCaddy(p)">
+                    <label class="control-label">Quantité :</label>
+                    <input type="number" name="quantity" [(ngModel)]="p.quantity" ngModel style="width: 40px">
+                    <button>
+                      <img src="assets/images/caddy.png">
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+
+
+
+              <!--                <table>-->
+<!--                  <tr>-->
+<!--                    <td>-->
+<!--                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur-->
+<!--                        adipisicing elit. Aliquid aspernatur et iure quasi sit, vitae!</p>-->
+<!--                          &lt;!&ndash;'?ts='+getTS(): Actualiser l'image une fois modifiée = vider cache du navigateur&ndash;&gt;-->
+
+<!--                      &lt;!&ndash; AFFICHE SLM POUR LES ADMINS&ndash;&gt;-->
+<!--                      <div *ngIf="isAdmin()">-->
+<!--                        <p>-->
+<!--                          <button (click)="onEditPhoto(p)">-->
+<!--                            <i class="fa-solid fa-pen-to-square">update</i>-->
+<!--                          </button>-->
+<!--                        </p>-->
+<!--                        &lt;!&ndash;currentProduct==p => pr qu'il s'affiche slm pr produit selectionné &ndash;&gt;-->
+<!--                        <p *ngIf="editPhoto==true && currentProduct==p">-->
+<!--                          <input type="file" (change)="onSelectFile($event)">-->
+<!--                          <button class="btn btn-success" (click)="uploadPhoto()">upload</button>-->
+<!--                          {{progress}}-->
+<!--                        </p>-->
+<!--                      </div>-->
+
+<!--                    </td>-->
+
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>{{p.description}}</td>-->
+<!--                  </tr>-->
+<!--                  <tr>-->
+<!--                    <td>{{p.price |  currency: "USD"}}</td>-->
+<!--                  </tr>-->
+
+<!--                </table>-->
 
               </div>
             </div>
 
         </div>
 
-</div>
+

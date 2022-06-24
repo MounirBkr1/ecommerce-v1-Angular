@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {CatalogueService} from "../catalogue.service";
+import {CatalogueService} from "../services/catalogue.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {AuthenticationService} from "../services/authentication.service";
+import {Product} from "../model/product.model";
 
 @Component({
   selector: 'app-products',
@@ -89,7 +90,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  onSelectFile(event: Event) {
+  onSelectedFile(event: Event) {
     // @ts-ignore
     this.selectedFiles =event.target.files; //ensemble des fichiers selectionnées
   }
@@ -109,6 +110,7 @@ export class ProductsComponent implements OnInit {
         //this.getProducts(this.currentRequest);
         //this.refreshUpdatedProduct();
         this.currentTime=Date.now();
+        this.editPhoto=false;
       }
     },(error:any)=>{
       alert("Problème de chargement"+error);
@@ -118,6 +120,9 @@ export class ProductsComponent implements OnInit {
 
     this.selectedFiles = undefined
   }
+
+
+
 
   //get time pour actualiser automatiquement les photos
   getTS() {
@@ -129,5 +134,16 @@ export class ProductsComponent implements OnInit {
     return this.authService.isAdmin();
   }
 
+//aller au page details product
+  onProductDetails(p: Product) {
+    let url=btoa(p._links.product.href);
+    console.log("url onProductDetails: "+url); //envoie: http://localhost:8080/products/2 en btoa
+    this.router.navigateByUrl("/products-detail/"+url);
+    //this.router.navigateByUrl("/products-detail/"+p.id);
+  }
 
+
+  onAddProductToCaddy(p: any) {
+
+  }
 }
