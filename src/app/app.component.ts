@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CatalogueService} from "./services/catalogue.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "./services/authentication.service";
+import {PannierService} from "./services/pannier.service";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
 
   constructor(private catalogueService:CatalogueService,
               private router:Router,
-              private authService:AuthenticationService){}
+              private authService:AuthenticationService,
+              public panierService:PannierService ){}
 
   ngOnInit(): void {
     //s'il trouve l'user il le charge et sait que vs etes authentifié et connait les roles

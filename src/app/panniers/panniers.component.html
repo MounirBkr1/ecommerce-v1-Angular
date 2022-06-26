@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-header">Panniers</div>
+  <div class="card-body" >
+    <table class="table table-stripped">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Prix</th>
+      </tr>
+      <tr *ngFor="let pr of pannierService.getCurrentPannier().items.values()">
+        <td>{{pr.product.id}}</td>
+        <td>{{pr.product.name}}</td>
+        <td>{{pr.product.quantity}}</td>
+        <td>{{pr.product.price}}</td>
+      </tr>
+      <tr>
+        <td colspan="3"> total</td>
+        <td>{{pannierService.getTotal()}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

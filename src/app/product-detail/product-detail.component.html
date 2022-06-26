@@ -44,7 +44,7 @@
       <div class="col-md-7">
         <div class="panel panel-default" style="min-height: 300px">
           <div class="panel-body">
-            <label>Price : {{currentProduct.currentPrice|number:'0.00'}}</label>
+            <label>Price : {{currentProduct.price|number:'0.00'}}</label>
           </div>
           <div class="panel-body">
             Description :{{currentProduct.description}}
@@ -65,7 +65,7 @@
       </div>
       <div class="form-group">
         <label class="control-label">Price:</label>
-        <input type="text" name="currentPrice" ngModel [(ngModel)]="currentProduct.currentPrice" class="form-control">
+        <input type="text" name="currentPrice" ngModel [(ngModel)]="currentProduct.price" class="form-control">
       </div>
       <div class="form-group">
         <label class="control-label">Promotion:</label>

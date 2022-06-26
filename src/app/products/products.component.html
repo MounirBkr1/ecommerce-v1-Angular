@@ -28,7 +28,7 @@
                   {{p.description}}
                 </div>
                 <div>
-                  <label>Price : {{p.currentPrice|number:'0.00'}}</label>
+                  <label>Price : {{p.price |number:'0.02' | currency}}</label>
                 </div>
                 <div>
         <span *ngIf="p.promotion">
@@ -53,41 +53,6 @@
               </div>
 
 
-
-
-              <!--                <table>-->
-<!--                  <tr>-->
-<!--                    <td>-->
-<!--                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur-->
-<!--                        adipisicing elit. Aliquid aspernatur et iure quasi sit, vitae!</p>-->
-<!--                          &lt;!&ndash;'?ts='+getTS(): Actualiser l'image une fois modifiée = vider cache du navigateur&ndash;&gt;-->
-
-<!--                      &lt;!&ndash; AFFICHE SLM POUR LES ADMINS&ndash;&gt;-->
-<!--                      <div *ngIf="isAdmin()">-->
-<!--                        <p>-->
-<!--                          <button (click)="onEditPhoto(p)">-->
-<!--                            <i class="fa-solid fa-pen-to-square">update</i>-->
-<!--                          </button>-->
-<!--                        </p>-->
-<!--                        &lt;!&ndash;currentProduct==p => pr qu'il s'affiche slm pr produit selectionné &ndash;&gt;-->
-<!--                        <p *ngIf="editPhoto==true && currentProduct==p">-->
-<!--                          <input type="file" (change)="onSelectFile($event)">-->
-<!--                          <button class="btn btn-success" (click)="uploadPhoto()">upload</button>-->
-<!--                          {{progress}}-->
-<!--                        </p>-->
-<!--                      </div>-->
-
-<!--                    </td>-->
-
-<!--                  </tr>-->
-<!--                  <tr>-->
-<!--                    <td>{{p.description}}</td>-->
-<!--                  </tr>-->
-<!--                  <tr>-->
-<!--                    <td>{{p.price |  currency: "USD"}}</td>-->
-<!--                  </tr>-->
-
-<!--                </table>-->
 
               </div>
             </div>

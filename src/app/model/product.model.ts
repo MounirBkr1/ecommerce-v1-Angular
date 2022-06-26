@@ -2,7 +2,7 @@ export interface Product{
   id:number;
   name:string;
   description:string;
-  currentPrice:number;
+  price:number;
   promotion:boolean;
   selected:boolean;
   available:boolean;

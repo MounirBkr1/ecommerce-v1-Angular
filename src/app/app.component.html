@@ -25,14 +25,14 @@
               <li><a class="dropdown-item my-clickable" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item me-4">
-            <a class="nav-link active my-clickable pull-right" aria-current="page"  (click)="onSelectedProducts()">Home</a>
+          <li class="nav-item">
+            <a class="nav-link"  routerLink="/panniers">Panniers</a>
           </li>
 
+
         </ul>
-
-
-            <i class="fa-solid fa-right-from-bracket" (click)="onLogout()"></i>
+        <li><a href="">{{panierService.getCurrentPannier().name}} | {{panierService.getCurrentPannier().items.size}}</a></li>
+        <i class="fa-solid fa-right-from-bracket" (click)="onLogout()"></i>
 
 
       </div>

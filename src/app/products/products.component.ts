@@ -4,6 +4,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {AuthenticationService} from "../services/authentication.service";
 import {Product} from "../model/product.model";
+import {PannierService} from "../services/pannier.service";
 
 @Component({
   selector: 'app-products',
@@ -24,7 +25,8 @@ export class ProductsComponent implements OnInit {
   constructor(public catalogueService:CatalogueService,
               private activatedRoute:ActivatedRoute,
               public router:Router,
-              public authService:AuthenticationService) {}
+              public authService:AuthenticationService,
+              public panierService:PannierService) {}
 
 
   ngOnInit(): void {
@@ -143,7 +145,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  onAddProductToCaddy(p: any) {
-
+  onAddProductToCaddy(p: Product) {
+    this.panierService.addProductToPannier(p);
   }
 }
